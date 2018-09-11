@@ -42,35 +42,39 @@ class ViewModelTests: XCTestCase {
         return now as Date
     }
     
+    private func createViewModel(future: Bool, type: ActivityType, delegate: DiaryEntryModelDelegate?) -> EntryViewModel {
+        let date = createConcreteDateTime(future: future)
+        let entry = DiaryEntry(time: date, type: type)
+        return EntryViewModel(entry: entry, delegate: delegate)
+    }
+    
     func testSelectionIndexIsNilForUnknown() {
-        let date = createConcreteDateTime(future: false)
-        let entry = DiaryEntry(time: date, type: .unknown)
-        let viewModel = EntryViewModel(entry: entry, delegate: nil)
+        let viewModel = createViewModel(future: false, type: .unknown, delegate: nil)
         
         XCTAssertNil(viewModel.selectionIndex, "Index should be nil for .unknown status")
     }
     
+    func testShouldReturnTimeInCorrectFormat() {
+        let viewModel = createViewModel(future: false, type: .unknown, delegate: nil)
+        
+        XCTAssertTrue(viewModel.time == "18:30", "Time format is not match")
+    }
+    
     func testFutureDateShouldReturnFutureStatus() {
-        let date = createConcreteDateTime(future: true)
-        let entry = DiaryEntry(time: date, type: .unknown)
-        let viewModel = EntryViewModel(entry: entry, delegate: nil)
+        let viewModel = createViewModel(future: true, type: .unknown, delegate: nil)
         
         XCTAssertTrue(viewModel.status == .future, "For future date should be .future status")
     }
     
     func testShouldReturnFilledStatusForSelectedActivity() {
-        let date = createConcreteDateTime(future: false)
-        let entry = DiaryEntry(time: date, type: .d_on)
-        let viewModel = EntryViewModel(entry: entry, delegate: nil)
+        let viewModel = createViewModel(future: false, type: .d_on, delegate: nil)
         
         XCTAssertTrue(viewModel.status == .filled, "It should return .filled for selected activity")
     }
     
     func testShouldNotifyOnValueChanged() {
         let delegate = MockDelegate()
-        let date = createConcreteDateTime(future: false)
-        let entry = DiaryEntry(time: date, type: .unknown)
-        let viewModel = EntryViewModel(entry: entry, delegate: delegate)
+        let viewModel = createViewModel(future: false, type: .unknown, delegate: delegate)
         
         viewModel.updateType(index: ActivityType.d_on.rawValue)
         let passedToDelegate = delegate.entry
