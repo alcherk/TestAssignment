@@ -267,12 +267,21 @@
                                             <constraint firstAttribute="height" constant="1" id="1VM-zi-MJw"/>
                                         </constraints>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="f8K-Ph-oNo">
+                                        <rect key="frame" x="345" y="15" width="12" height="6"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="6" id="KFG-u4-uqc"/>
+                                            <constraint firstAttribute="width" constant="12" id="XNe-TS-neO"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="f8K-Ph-oNo" firstAttribute="centerY" secondItem="KcA-pC-fsM" secondAttribute="centerY" id="Myk-GK-tqX"/>
                                     <constraint firstItem="w85-G2-NTo" firstAttribute="leading" secondItem="KcA-pC-fsM" secondAttribute="leading" id="PZq-B5-NbJ"/>
                                     <constraint firstAttribute="trailing" secondItem="w85-G2-NTo" secondAttribute="trailing" id="Qw2-dl-crh"/>
                                     <constraint firstAttribute="height" constant="36" id="m2d-4y-fUE"/>
+                                    <constraint firstAttribute="trailing" secondItem="f8K-Ph-oNo" secondAttribute="trailing" constant="18" id="nIO-w7-h4f"/>
                                     <constraint firstAttribute="bottom" secondItem="w85-G2-NTo" secondAttribute="bottom" id="pqn-9A-dP1"/>
                                 </constraints>
                             </view>
@@ -303,6 +312,7 @@
                         <outlet property="hintHeader" destination="KcA-pC-fsM" id="xLK-Ow-yRS"/>
                         <outlet property="hintView" destination="2hL-3B-rKE" id="04G-4L-baM"/>
                         <outlet property="hintViewHeight" destination="V6W-GG-UpM" id="t2D-xE-ZJy"/>
+                        <outlet property="moreArrow" destination="f8K-Ph-oNo" id="Grb-Za-haX"/>
                         <outlet property="onDysLabel" destination="fVp-iu-f71" id="ZQF-1t-uqS"/>
                         <outlet property="tableHeaderView" destination="lNy-DD-qX6" id="WLw-vE-VRj"/>
                         <outlet property="tableView" destination="OcZ-p0-wX2" id="H8D-4r-Kr0"/>
@@ -331,6 +341,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="more_arrow" width="61" height="38"/>
         <image name="red_dot" width="6" height="6"/>
     </resources>
 </document>

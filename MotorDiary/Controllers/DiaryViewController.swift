@@ -13,6 +13,7 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     
     @IBOutlet weak var hintHeader: UIView!
+    @IBOutlet weak var moreArrow: UIImageView!
     @IBOutlet weak var hintViewHeight: NSLayoutConstraint!
     @IBOutlet weak var hintView: UIView!
     
@@ -45,6 +46,7 @@ class DiaryViewController: UIViewController {
         hintViewHeight.constant = 0.0
         addShadow(to: tableHeaderView)
         addShadow(to: hintView)
+        moreArrow.transform = CGAffineTransform(rotationAngle: .pi)
         
         doneButton.isEnabled = false
         
@@ -101,12 +103,14 @@ class DiaryViewController: UIViewController {
         if collapse {
             UIView.animate(withDuration: 0.3) {
                 self.hintViewHeight.constant = 0
+                self.moreArrow.transform = CGAffineTransform(rotationAngle: -0.999 * .pi)
                 self.view.layoutIfNeeded()
             }
         }
         else {
             UIView.animate(withDuration: 0.3) {
                 self.hintViewHeight.constant = 70
+                self.moreArrow.transform = .identity
                 self.view.layoutIfNeeded()
             }
         }
